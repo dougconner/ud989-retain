@@ -18,10 +18,16 @@ $(function(){
 
 
     var octopus = {
+
         addNewNote: function(noteStr) {
             model.add({
-                content: noteStr
+                content: noteStr,
+                date: Date.now()
             });
+            // model.add({[
+            //     content: noteStr,
+            //     date: Date.now()
+            // ]});
             view.render();
         },
 
@@ -52,8 +58,13 @@ $(function(){
             var htmlStr = '';
             octopus.getNotes().forEach(function(note){
                 htmlStr += '<li class="note">'+
-                        note.content +
-                    '</li>';
+                        note.content + '<span class="note-date">' +
+                        Date(note.date) + '</span></li>';
+                        // note.content + '  Date: ' + note.Date +
+                    // '</li>' ;
+                    // '<p class="note-date">' +
+                    // note.date +
+                    // '</p>';
             });
             this.noteList.html( htmlStr );
         }
